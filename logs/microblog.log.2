@@ -1,0 +1,112 @@
+2019-05-28 19:31:50,796 ERROR: Exception on /user/susan [GET] [in /home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py:1780]
+Traceback (most recent call last):
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/engine/base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/engine/default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: followers
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/_compat.py", line 36, in reraise
+    raise value
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/user/PycharmProjects/coursera/python_projects/microblog/app/routes.py", line 81, in user
+    return render_template('user.html', user=user, posts=posts)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/user/PycharmProjects/coursera/python_projects/microblog/app/templates/user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/user/PycharmProjects/coursera/python_projects/microblog/app/templates/base.html", line 30, in top-level template code
+    {% block content %}{% endblock %}
+  File "/home/user/PycharmProjects/coursera/python_projects/microblog/app/templates/user.html", line 11, in block "content"
+    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/orm/dynamic.py", line 323, in count
+    return self._clone(sess).count()
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3561, in count
+    return self.from_self(col).scalar()
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3305, in scalar
+    ret = self.one()
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3275, in one
+    ret = self.one_or_none()
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3244, in one_or_none
+    ret = list(self)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3317, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3342, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/engine/base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/engine/base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/engine/base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/engine/base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/util/compat.py", line 383, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/util/compat.py", line 128, in reraise
+    raise value.with_traceback(tb)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/engine/base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/sqlalchemy/engine/default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: followers
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen 
+FROM user, followers 
+WHERE followers.followed_id = ? AND followers.follower_id = user.id) AS anon_1]
+[parameters: (1,)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-05-28 19:32:26,482 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-28 19:32:45,450 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-28 19:32:50,698 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-28 19:36:53,787 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-29 12:42:21,859 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-29 12:45:04,789 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-29 12:47:07,403 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-29 12:47:17,390 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-29 12:50:02,998 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-29 12:50:39,350 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-29 12:51:29,418 INFO: Microblog startup [in /home/user/PycharmProjects/coursera/python_projects/microblog/app/__init__.py:42]
+2019-05-29 12:52:06,025 ERROR: Exception on /index [GET] [in /home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py:1780]
+Traceback (most recent call last):
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 1737, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/_compat.py", line 36, in reraise
+    raise value
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask/app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/user/PycharmProjects/coursera/venv/lib/python3.5/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/user/PycharmProjects/coursera/python_projects/microblog/app/routes.py", line 30, in index
+    page, app.config['POSTS_PER_PAGE'], False)
+KeyError: 'POSTS_PER_PAGE'

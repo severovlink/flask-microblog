@@ -1,0 +1,91 @@
+>>> # get all posts written by a user
+>>> u = User.query.get(1)
+>>> u
+<User john>
+>>> posts = u.posts.all()
+>>> posts
+[<Post my first post!>]
+
+>>> # same, but with a user that has no posts
+>>> u = User.query.get(2)
+>>> u
+<User susan>
+>>> u.posts.all()
+[]
+
+>>> # print post author and body for all posts
+>>> posts = Post.query.all()
+>>> for p in posts:
+...     print(p.id, p.author.username, p.body)
+...
+1 john my first post!
+
+# get all users in reverse alphabetical order
+>>> User.query.order_by(User.username.desc()).all()
+[<User susan>, <User john>]
+
+База данных может ответить на запрос, возвращающий всех пользователей:
+
+
+>>> users = User.query.all()
+>>> users
+[<User john>, <User susan>]
+>>> for u in users:
+...     print(u.id, u.username)
+...
+1 john
+2 susan
+
+
+Вот еще один способ. Если вы знаете идентификатор пользователя, вы можете получить результат следующим образом:
+
+
+>>> u = User.query.get(1)
+>>> u
+<User john>
+
+Теперь добавим сообщение в блоге:
+
+
+>>> u = User.query.get(1)
+>>> p = Post(body='my first post!', author=u)
+>>> db.session.add(p)
+>>> db.session.commit()
+
+Начните с создания нового пользователя:
+
+
+>>> u = User(username='john', email='john@example.com')
+>>> db.session.add(u)
+>>> db.session.commit()
+
+
+из второго терминала:
+
+для использования эмулированного сервера
+(venv) $ python -m smtpd -n -c DebuggingServer localhost:8025
+(venv) $ export MAIL_SERVER=localhost
+(venv) $ export MAIL_PORT=8025
+
+настоящий gmail server
+(venv) $ export MAIL_SERVER=smtp.googlemail.com
+(venv) $ export MAIL_PORT=587
+(venv) $ export MAIL_USE_TLS=1
+(venv) $ export MAIL_USERNAME=<your-gmail-username>
+(venv) $ export MAIL_PASSWORD=<your-gmail-password>
+
+Помните, что параметры безопасности вашей учетной записи Gmail могут препятствовать
+приложению отправлять электронную почту через нее, если вы явно не разрешаете
+«менее безопасным приложениям» доступ к вашей учетной записи Gmail.
+
+
+Отправка письма из flask-shell оболочки:
+flask shell
+>>> from flask_mail import Message
+>>> from app import mail
+>>> msg = Message('test subject', sender=app.config['ADMINS'][0],
+... recipients=['your-email@example.com'])
+>>> msg.body = 'text body'
+>>> msg.html = '<h1>HTML body</h1>'
+>>> mail.send(msg)
+
